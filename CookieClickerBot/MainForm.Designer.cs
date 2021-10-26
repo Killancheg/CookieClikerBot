@@ -32,7 +32,10 @@ namespace CookieClickerBot
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.butTestFormStart = new System.Windows.Forms.Button();
+            this.lbSearchInSource = new System.Windows.Forms.Label();
+            this.cbProcessNamesList = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -45,6 +48,11 @@ namespace CookieClickerBot
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.cbProcessNamesList);
+            this.splitContainer1.Panel1.Controls.Add(this.lbSearchInSource);
             // 
             // splitContainer1.Panel2
             // 
@@ -77,6 +85,24 @@ namespace CookieClickerBot
             this.butTestFormStart.UseVisualStyleBackColor = true;
             this.butTestFormStart.Click += new System.EventHandler(this.butTestFormStart_Click);
             // 
+            // lbSearchInSource
+            // 
+            this.lbSearchInSource.AutoSize = true;
+            this.lbSearchInSource.Location = new System.Drawing.Point(12, 9);
+            this.lbSearchInSource.Name = "lbSearchInSource";
+            this.lbSearchInSource.Size = new System.Drawing.Size(148, 13);
+            this.lbSearchInSource.TabIndex = 1;
+            this.lbSearchInSource.Text = "Выберите окно для работы:";
+            // 
+            // cbProcessNamesList
+            // 
+            this.cbProcessNamesList.FormattingEnabled = true;
+            this.cbProcessNamesList.Location = new System.Drawing.Point(15, 25);
+            this.cbProcessNamesList.Name = "cbProcessNamesList";
+            this.cbProcessNamesList.Size = new System.Drawing.Size(423, 21);
+            this.cbProcessNamesList.TabIndex = 2;
+            this.cbProcessNamesList.DropDown += new System.EventHandler(this.cbProcessNamesList_DropDown);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,6 +111,8 @@ namespace CookieClickerBot
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainForm";
             this.Text = "CookieClickerBot";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -100,6 +128,8 @@ namespace CookieClickerBot
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button butTestFormStart;
+        private System.Windows.Forms.ComboBox cbProcessNamesList;
+        private System.Windows.Forms.Label lbSearchInSource;
     }
 }
 
