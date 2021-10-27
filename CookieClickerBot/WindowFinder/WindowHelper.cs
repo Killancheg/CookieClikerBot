@@ -103,9 +103,12 @@ namespace CookieClickerBot.WindowFinder
 
                 foreach (var window in windowsInProcess)
                 {
-                    comboBoxOpenedWindowsList.Add(new ComboBoxWindows(process.MainWindowTitle, window, numeration));
+                    if (IsWindowVisible(window))
+                    {
+                        comboBoxOpenedWindowsList.Add(new ComboBoxWindows(process.MainWindowTitle, window, numeration));
 
-                    numeration++;
+                        numeration++;
+                    }
                 }
             }
             comboBoxOpenedWindowsList = comboBoxOpenedWindowsList.OrderBy(x => x.Name).ThenBy(x => x.Numeration).ToList();
@@ -115,6 +118,10 @@ namespace CookieClickerBot.WindowFinder
         }
 
         [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
         static extern bool EnumThreadWindows(int dwThreadId, EnumThreadDelegate lpfn, IntPtr lParam);
 
         public static IEnumerable<IntPtr> EnumerateProcessWindowHandles(int processId)
@@ -122,8 +129,9 @@ namespace CookieClickerBot.WindowFinder
             var handles = new List<IntPtr>();
 
             foreach (ProcessThread thread in Process.GetProcessById(processId).Threads)
-                EnumThreadWindows(thread.Id,
-                    (hWnd, lParam) => { handles.Add(hWnd); return true; }, IntPtr.Zero);
+            {
+                EnumThreadWindows(thread.Id, (hWnd, lParam) => { handles.Add(hWnd); return true; }, IntPtr.Zero);
+            }
 
             return handles;
         }
