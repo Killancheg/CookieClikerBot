@@ -9,13 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CookieClickerBot.ProcessTypes;
+using CookieClickerBot.WindowFinder;
 
 namespace CookieClickerBot
 {
     public partial class MainForm : Form
     {
-        private Process[] processList;
-
         public MainForm()
         {
             InitializeComponent();
@@ -30,12 +29,12 @@ namespace CookieClickerBot
 
         private void UpdateProcessList()
         {
-            processList = Process.GetProcesses();
+            List<ComboBoxWindows> comboBoxOpenWindows = WindowHelper.GetComboBoxOpenedWindowsList();
             cbProcessNamesList.Items.Clear();
-            foreach (Process process in processList)
+
+            foreach (var comboBoxWindow in comboBoxOpenWindows)
             {
-                if (process.MainWindowTitle.Length > 0)
-                    cbProcessNamesList.Items.Add(new ComboBoxProcess(process.MainWindowTitle, process.Id));
+                cbProcessNamesList.Items.Add(comboBoxWindow);
             }
         }
 

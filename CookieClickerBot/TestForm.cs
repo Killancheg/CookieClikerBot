@@ -44,8 +44,7 @@ namespace CookieClickerBot
 
         private void pbImageToCompare_Click(object sender, EventArgs e)
         {
-            Int32.TryParse(lbClickCounter.Text, out int clickCounter);
-            lbClickCounter.Text = (clickCounter + 1).ToString();
+            ClickCounterIncrease();
         }
 
         private void butClickCounterClear_Click(object sender, EventArgs e)
@@ -57,6 +56,12 @@ namespace CookieClickerBot
         {
             UpdateImageToCompare();
             ClearClickCounter();
+        }
+
+        private void ClickCounterIncrease()
+        {
+            Int32.TryParse(lbClickCounter.Text, out int clickCounter);
+            lbClickCounter.Text = (clickCounter + 1).ToString();
         }
 
         private void ClearClickCounter()
