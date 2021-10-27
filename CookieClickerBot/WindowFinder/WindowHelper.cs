@@ -105,9 +105,14 @@ namespace CookieClickerBot.WindowFinder
                 {
                     if (IsWindowVisible(window))
                     {
-                        comboBoxOpenedWindowsList.Add(new ComboBoxWindows(process.MainWindowTitle, window, numeration));
-
-                        numeration++;
+                        if (GetWindowTextLength(window) > 0)
+                        {
+                            comboBoxOpenedWindowsList.Add(new ComboBoxWindows(GetWindowTitle(window), window, 1));
+                        }
+                        else
+                        {
+                            comboBoxOpenedWindowsList.Add(new ComboBoxWindows(process.MainWindowTitle, window, numeration++));
+                        }
                     }
                 }
             }
@@ -134,6 +139,14 @@ namespace CookieClickerBot.WindowFinder
             }
 
             return handles;
+        }
+
+        public static string GetWindowTitle(IntPtr hWnd)
+        {
+            var length = GetWindowTextLength(hWnd) + 1;
+            var title = new StringBuilder(length);
+            GetWindowText(hWnd, title, length);
+            return title.ToString();
         }
     }
 }
