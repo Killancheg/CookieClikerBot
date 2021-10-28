@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CookieClickerBot.ProcessTypes
 {
-    class ComboBoxWindows
+    class ComboBoxWindow
     {
         public string Name { get; set; }
 
@@ -14,7 +14,7 @@ namespace CookieClickerBot.ProcessTypes
 
         public int Numeration { get; set; }
 
-        public ComboBoxWindows(string name, IntPtr id, int numeration)
+        public ComboBoxWindow(string name, IntPtr id, int numeration)
         {
             Name = name;
             ID = id;

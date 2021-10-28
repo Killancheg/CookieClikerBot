@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using CookieClickerBot.ProcessTypes;
+using System.Drawing;
 
 namespace CookieClickerBot.WindowFinder
 {
@@ -88,9 +89,9 @@ namespace CookieClickerBot.WindowFinder
             return processesWithWindows;
         }
 
-        public static List<ComboBoxWindows> GetComboBoxOpenedWindowsList()
+        public static List<ComboBoxWindow> GetComboBoxOpenedWindowsList()
         {
-            List<ComboBoxWindows> comboBoxOpenedWindowsList = new List<ComboBoxWindows>();
+            List<ComboBoxWindow> comboBoxOpenedWindowsList = new List<ComboBoxWindow>();
 
             List<Process> processesWithWindows = GetProcessesWithWindowsList();
 
@@ -107,11 +108,11 @@ namespace CookieClickerBot.WindowFinder
                     {
                         if (GetWindowTextLength(window) > 0)
                         {
-                            comboBoxOpenedWindowsList.Add(new ComboBoxWindows(GetWindowTitle(window), window, 1));
+                            comboBoxOpenedWindowsList.Add(new ComboBoxWindow(GetWindowTitle(window), window, 1));
                         }
                         else
                         {
-                            comboBoxOpenedWindowsList.Add(new ComboBoxWindows(process.MainWindowTitle, window, numeration++));
+                            comboBoxOpenedWindowsList.Add(new ComboBoxWindow(process.MainWindowTitle, window, numeration++));
                         }
                     }
                 }
@@ -147,6 +148,28 @@ namespace CookieClickerBot.WindowFinder
             var title = new StringBuilder(length);
             GetWindowText(hWnd, title, length);
             return title.ToString();
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
+        [StructLayout(LayoutKind.Sequential)]
+        private struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        public static Rectangle GetWindowBorderRectangle(IntPtr hWnd)
+        {
+            RECT rct = new RECT();
+            GetWindowRect(hWnd, ref rct);
+
+            Rectangle rect = new Rectangle(rct.Left - 2, rct.Top - 2, (rct.Right - rct.Left) + 2, (rct.Bottom - rct.Top) + 2);
+
+            return rect;
         }
     }
 }
