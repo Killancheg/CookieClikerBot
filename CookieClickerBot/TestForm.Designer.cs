@@ -31,13 +31,14 @@ namespace CookieClickerBot
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.tbImageLocation = new System.Windows.Forms.TextBox();
-            this.butChoseImage = new System.Windows.Forms.Button();
-            this.labChoseImage = new System.Windows.Forms.Label();
             this.pbImageToCompare = new System.Windows.Forms.PictureBox();
-            this.lbClickCount = new System.Windows.Forms.Label();
-            this.lbClickCounter = new System.Windows.Forms.Label();
+            this.labChoseImage = new System.Windows.Forms.Label();
+            this.butChoseImage = new System.Windows.Forms.Button();
+            this.tbImageLocation = new System.Windows.Forms.TextBox();
             this.butClickCounterClear = new System.Windows.Forms.Button();
+            this.lbClickCounter = new System.Windows.Forms.Label();
+            this.lbClickCount = new System.Windows.Forms.Label();
+            this.butRescale = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,11 +62,12 @@ namespace CookieClickerBot
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.butRescale);
             this.splitContainer1.Panel2.Controls.Add(this.butClickCounterClear);
             this.splitContainer1.Panel2.Controls.Add(this.lbClickCounter);
             this.splitContainer1.Panel2.Controls.Add(this.lbClickCount);
-            this.splitContainer1.Size = new System.Drawing.Size(687, 528);
-            this.splitContainer1.SplitterDistance = 519;
+            this.splitContainer1.Size = new System.Drawing.Size(1175, 931);
+            this.splitContainer1.SplitterDistance = 887;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -85,18 +87,27 @@ namespace CookieClickerBot
             this.splitContainer2.Panel2.Controls.Add(this.labChoseImage);
             this.splitContainer2.Panel2.Controls.Add(this.butChoseImage);
             this.splitContainer2.Panel2.Controls.Add(this.tbImageLocation);
-            this.splitContainer2.Size = new System.Drawing.Size(519, 528);
-            this.splitContainer2.SplitterDistance = 429;
+            this.splitContainer2.Size = new System.Drawing.Size(887, 931);
+            this.splitContainer2.SplitterDistance = 756;
             this.splitContainer2.TabIndex = 0;
             // 
-            // tbImageLocation
+            // pbImageToCompare
             // 
-            this.tbImageLocation.Location = new System.Drawing.Point(12, 38);
-            this.tbImageLocation.Name = "tbImageLocation";
-            this.tbImageLocation.Size = new System.Drawing.Size(488, 20);
-            this.tbImageLocation.TabIndex = 0;
-            this.tbImageLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbImageLocation_KeyDown);
-            this.tbImageLocation.Validating += new System.ComponentModel.CancelEventHandler(this.tbImageLocation_Validating);
+            this.pbImageToCompare.Location = new System.Drawing.Point(12, 13);
+            this.pbImageToCompare.Name = "pbImageToCompare";
+            this.pbImageToCompare.Size = new System.Drawing.Size(858, 729);
+            this.pbImageToCompare.TabIndex = 0;
+            this.pbImageToCompare.TabStop = false;
+            this.pbImageToCompare.Click += new System.EventHandler(this.pbImageToCompare_Click);
+            // 
+            // labChoseImage
+            // 
+            this.labChoseImage.AutoSize = true;
+            this.labChoseImage.Location = new System.Drawing.Point(13, 19);
+            this.labChoseImage.Name = "labChoseImage";
+            this.labChoseImage.Size = new System.Drawing.Size(128, 13);
+            this.labChoseImage.TabIndex = 2;
+            this.labChoseImage.Text = "Выберите изображение";
             // 
             // butChoseImage
             // 
@@ -108,42 +119,14 @@ namespace CookieClickerBot
             this.butChoseImage.UseVisualStyleBackColor = true;
             this.butChoseImage.Click += new System.EventHandler(this.butChoseImage_Click);
             // 
-            // labChoseImage
+            // tbImageLocation
             // 
-            this.labChoseImage.AutoSize = true;
-            this.labChoseImage.Location = new System.Drawing.Point(13, 19);
-            this.labChoseImage.Name = "labChoseImage";
-            this.labChoseImage.Size = new System.Drawing.Size(128, 13);
-            this.labChoseImage.TabIndex = 2;
-            this.labChoseImage.Text = "Выберите изображение";
-            // 
-            // pbImageToCompare
-            // 
-            this.pbImageToCompare.Location = new System.Drawing.Point(12, 13);
-            this.pbImageToCompare.Name = "pbImageToCompare";
-            this.pbImageToCompare.Size = new System.Drawing.Size(488, 396);
-            this.pbImageToCompare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbImageToCompare.TabIndex = 0;
-            this.pbImageToCompare.TabStop = false;
-            this.pbImageToCompare.Click += new System.EventHandler(this.pbImageToCompare_Click);
-            // 
-            // lbClickCount
-            // 
-            this.lbClickCount.AutoSize = true;
-            this.lbClickCount.Location = new System.Drawing.Point(17, 13);
-            this.lbClickCount.Name = "lbClickCount";
-            this.lbClickCount.Size = new System.Drawing.Size(112, 13);
-            this.lbClickCount.TabIndex = 0;
-            this.lbClickCount.Text = "Кликов по картинке:";
-            // 
-            // lbClickCounter
-            // 
-            this.lbClickCounter.AutoSize = true;
-            this.lbClickCounter.Location = new System.Drawing.Point(17, 37);
-            this.lbClickCounter.Name = "lbClickCounter";
-            this.lbClickCounter.Size = new System.Drawing.Size(13, 13);
-            this.lbClickCounter.TabIndex = 1;
-            this.lbClickCounter.Text = "0";
+            this.tbImageLocation.Location = new System.Drawing.Point(12, 38);
+            this.tbImageLocation.Name = "tbImageLocation";
+            this.tbImageLocation.Size = new System.Drawing.Size(488, 20);
+            this.tbImageLocation.TabIndex = 0;
+            this.tbImageLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbImageLocation_KeyDown);
+            this.tbImageLocation.Validating += new System.ComponentModel.CancelEventHandler(this.tbImageLocation_Validating);
             // 
             // butClickCounterClear
             // 
@@ -155,11 +138,39 @@ namespace CookieClickerBot
             this.butClickCounterClear.UseVisualStyleBackColor = true;
             this.butClickCounterClear.Click += new System.EventHandler(this.butClickCounterClear_Click);
             // 
+            // lbClickCounter
+            // 
+            this.lbClickCounter.AutoSize = true;
+            this.lbClickCounter.Location = new System.Drawing.Point(17, 37);
+            this.lbClickCounter.Name = "lbClickCounter";
+            this.lbClickCounter.Size = new System.Drawing.Size(13, 13);
+            this.lbClickCounter.TabIndex = 1;
+            this.lbClickCounter.Text = "0";
+            // 
+            // lbClickCount
+            // 
+            this.lbClickCount.AutoSize = true;
+            this.lbClickCount.Location = new System.Drawing.Point(17, 13);
+            this.lbClickCount.Name = "lbClickCount";
+            this.lbClickCount.Size = new System.Drawing.Size(112, 13);
+            this.lbClickCount.TabIndex = 0;
+            this.lbClickCount.Text = "Кликов по картинке:";
+            // 
+            // butRescale
+            // 
+            this.butRescale.Location = new System.Drawing.Point(20, 140);
+            this.butRescale.Name = "butRescale";
+            this.butRescale.Size = new System.Drawing.Size(75, 23);
+            this.butRescale.TabIndex = 3;
+            this.butRescale.Text = "RescaleTargets";
+            this.butRescale.UseVisualStyleBackColor = true;
+            this.butRescale.Click += new System.EventHandler(this.butRescale_Click);
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 528);
+            this.ClientSize = new System.Drawing.Size(1175, 931);
             this.Controls.Add(this.splitContainer1);
             this.Name = "TestForm";
             this.Text = "TestForm";
@@ -189,5 +200,6 @@ namespace CookieClickerBot
         private System.Windows.Forms.Button butClickCounterClear;
         private System.Windows.Forms.Label lbClickCounter;
         private System.Windows.Forms.Label lbClickCount;
+        private System.Windows.Forms.Button butRescale;
     }
 }

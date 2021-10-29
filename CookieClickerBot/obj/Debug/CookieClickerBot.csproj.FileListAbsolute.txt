@@ -2,7 +2,6 @@ D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\Cooki
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\CookieClickerBot.exe
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\CookieClickerBot.pdb
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\Emgu.CV.Platform.NetStandard.dll
-D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\Emgu.CV.Platform.NetStandard.xml
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.csproj.AssemblyReference.cache
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.MainForm.resources
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.Properties.Resources.resources
@@ -11,3 +10,7 @@ D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\Cooki
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.csproj.CoreCompileInputs.cache
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.exe
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.pdb
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\Emgu.CV.Bitmap.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\System.Drawing.Common.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\Debug\Emgu.CV.Platform.NetFramework.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\Debug\CookieClickerBot.csproj.CopyComplete

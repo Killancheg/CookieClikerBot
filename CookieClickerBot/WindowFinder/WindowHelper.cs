@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using CookieClickerBot.ProcessTypes;
 using System.Drawing;
@@ -170,6 +169,15 @@ namespace CookieClickerBot.WindowFinder
             Rectangle rect = new Rectangle(rct.Left - 2, rct.Top - 2, (rct.Right - rct.Left) + 2, (rct.Bottom - rct.Top) + 2);
 
             return rect;
+        }
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        public static bool IsWindowActive(IntPtr handle)
+        {
+            IntPtr activeHandle = GetForegroundWindow();
+            return (activeHandle == handle);
         }
     }
 }

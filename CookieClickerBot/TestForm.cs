@@ -81,6 +81,23 @@ namespace CookieClickerBot
             }
         }
 
-        
+        private void butRescale_Click(object sender, EventArgs e)
+        {
+            List<string> targets = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\", false);
+
+            double[] percents = new double[] { 0.60, 0.65, 0.70, 0.75, 0.80, 0.95, 0.90, 0.95, 1.10 };
+
+            foreach (var percent in percents)
+            {
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    string filename = $"{i}_{percent}.png";
+                    filename = filename.Replace(",", "").Replace("_0","_");
+                    string fullFilename = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\" + filename;
+                    ImageHelper.PercentResizeImage(targets[i], percent).Save(fullFilename);
+                    //MessageBox.Show($"Сохранен файл {filename}");
+                }
+            }
+        }
     }
 }
