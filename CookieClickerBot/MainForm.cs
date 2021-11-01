@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CookieClickerBot.Helpers;
 using CookieClickerBot.ProcessTypes;
-using CookieClickerBot.WindowFinder;
 
 namespace CookieClickerBot
 {
     public delegate void StartStopBot();
-    
+
 
     public partial class MainForm : Form
     {
@@ -20,10 +20,17 @@ namespace CookieClickerBot
 
         private CancellationTokenSource DrawingTokenSource;
 
+        private CancellationTokenSource ClickerTokenSource;
+
         public MainForm()
         {
             InitializeComponent();
             UpdateProcessList();
+            ItializeActiveStatusChangeEvent();
+        }
+
+        private void ItializeActiveStatusChangeEvent()
+        {
             ChangeActiveStatus += ChageBotActiveStatus;
             ChangeActiveStatus += ChangeStartButtion;
         }
@@ -71,10 +78,48 @@ namespace CookieClickerBot
 
         private void butStart_Click(object sender, EventArgs e)
         {
-            ChangeActiveStatus();
+            // не учитывает случая, когда кликкер был запущен в одном окне, а затем было выбрано другое
+            // Возможно стоит написать триггеры для комбобокса
+            if (cbProcessNamesList.SelectedIndex != -1)
+            {
+                ChangeActiveStatus();
+                StartStopClicker();
+            }
         }
 
-        private void cbDrawRectangle_CheckedChanged(object sender, EventArgs e)
+        private async void StartStopClicker()
+        {
+            if (isRunning)
+            {
+                ClickerTokenSource = new CancellationTokenSource();
+
+                ScreenShotForm clickerViewer = CreateSceenShotForm();
+
+                clickerViewer.Show();
+
+                ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
+
+                CookieClicker cookieClicker = new CookieClicker(clickerViewer, selectedWindow.ID, ClickerTokenSource.Token);
+
+                await cookieClicker.Run();
+                //Task autoCkickCokies = Task.Run(() => cookieClicker.Run());
+            }
+            else
+            {
+                ClickerTokenSource.Cancel();
+            }
+
+        }
+
+        private ScreenShotForm CreateSceenShotForm()
+        {
+            ScreenShotForm screenshotViewer = new ScreenShotForm();
+            ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
+            screenshotViewer.CopyWindowSize(selectedWindow.ID);
+            return screenshotViewer;
+        }
+
+    private void cbDrawRectangle_CheckedChanged(object sender, EventArgs e)
         {
             if (cbProcessNamesList.SelectedIndex != -1)
             {
@@ -91,6 +136,15 @@ namespace CookieClickerBot
                     DrawingTokenSource.Cancel();
                 }
             }
+        }
+
+        private void butTestScreenCapture_Click(object sender, EventArgs e)
+        {
+            var sc = new ScreenCapture();
+            ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
+            Bitmap bitmap = sc.GetScreenshot(selectedWindow.ID);
+            string filepath = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\";
+            sc.WriteBitmapToFile(filepath+"temp.jpg", bitmap);
         }
     }
 }

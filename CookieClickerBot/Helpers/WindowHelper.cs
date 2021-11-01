@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using CookieClickerBot.ProcessTypes;
 using System.Drawing;
 
-namespace CookieClickerBot.WindowFinder
+namespace CookieClickerBot.Helpers
 {
     static class WindowHelper
     {

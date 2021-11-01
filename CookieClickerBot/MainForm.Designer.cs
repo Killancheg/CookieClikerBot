@@ -30,12 +30,13 @@ namespace CookieClickerBot
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cbDrawRectangle = new System.Windows.Forms.CheckBox();
+            this.butStart = new System.Windows.Forms.Button();
             this.cbProcessNamesList = new System.Windows.Forms.ComboBox();
             this.lbSearchInSource = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.butTestFormStart = new System.Windows.Forms.Button();
-            this.butStart = new System.Windows.Forms.Button();
-            this.cbDrawRectangle = new System.Windows.Forms.CheckBox();
+            this.butTestScreenCapture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,6 +54,7 @@ namespace CookieClickerBot
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.butTestScreenCapture);
             this.splitContainer1.Panel1.Controls.Add(this.cbDrawRectangle);
             this.splitContainer1.Panel1.Controls.Add(this.butStart);
             this.splitContainer1.Panel1.Controls.Add(this.cbProcessNamesList);
@@ -64,6 +66,31 @@ namespace CookieClickerBot
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 597;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // cbDrawRectangle
+            // 
+            this.cbDrawRectangle.AutoSize = true;
+            this.cbDrawRectangle.Location = new System.Drawing.Point(15, 413);
+            this.cbDrawRectangle.Name = "cbDrawRectangle";
+            this.cbDrawRectangle.Size = new System.Drawing.Size(200, 17);
+            this.cbDrawRectangle.TabIndex = 4;
+            this.cbDrawRectangle.Text = "Выделить выбранное приложение";
+            this.cbDrawRectangle.UseVisualStyleBackColor = true;
+            this.cbDrawRectangle.CheckedChanged += new System.EventHandler(this.cbDrawRectangle_CheckedChanged);
+            // 
+            // butStart
+            // 
+            this.butStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.butStart.Image = global::CookieClickerBot.Properties.Resources.Small_start_img;
+            this.butStart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.butStart.Location = new System.Drawing.Point(15, 64);
+            this.butStart.Name = "butStart";
+            this.butStart.Size = new System.Drawing.Size(107, 70);
+            this.butStart.TabIndex = 3;
+            this.butStart.Text = "Начать";
+            this.butStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.butStart.UseVisualStyleBackColor = true;
+            this.butStart.Click += new System.EventHandler(this.butStart_Click);
             // 
             // cbProcessNamesList
             // 
@@ -107,30 +134,15 @@ namespace CookieClickerBot
             this.butTestFormStart.UseVisualStyleBackColor = true;
             this.butTestFormStart.Click += new System.EventHandler(this.butTestFormStart_Click);
             // 
-            // butStart
+            // butTestScreenCapture
             // 
-            this.butStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.butStart.Image = global::CookieClickerBot.Properties.Resources.Small_start_img;
-            this.butStart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.butStart.Location = new System.Drawing.Point(15, 64);
-            this.butStart.Name = "butStart";
-            this.butStart.Size = new System.Drawing.Size(107, 70);
-            this.butStart.TabIndex = 3;
-            this.butStart.Text = "Начать";
-            this.butStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.butStart.UseVisualStyleBackColor = true;
-            this.butStart.Click += new System.EventHandler(this.butStart_Click);
-            // 
-            // cbDrawRectangle
-            // 
-            this.cbDrawRectangle.AutoSize = true;
-            this.cbDrawRectangle.Location = new System.Drawing.Point(15, 413);
-            this.cbDrawRectangle.Name = "cbDrawRectangle";
-            this.cbDrawRectangle.Size = new System.Drawing.Size(200, 17);
-            this.cbDrawRectangle.TabIndex = 4;
-            this.cbDrawRectangle.Text = "Выделить выбранное приложение";
-            this.cbDrawRectangle.UseVisualStyleBackColor = true;
-            this.cbDrawRectangle.CheckedChanged += new System.EventHandler(this.cbDrawRectangle_CheckedChanged);
+            this.butTestScreenCapture.Location = new System.Drawing.Point(15, 167);
+            this.butTestScreenCapture.Name = "butTestScreenCapture";
+            this.butTestScreenCapture.Size = new System.Drawing.Size(214, 23);
+            this.butTestScreenCapture.TabIndex = 5;
+            this.butTestScreenCapture.Text = "TestScreenCapture";
+            this.butTestScreenCapture.UseVisualStyleBackColor = true;
+            this.butTestScreenCapture.Click += new System.EventHandler(this.butTestScreenCapture_Click);
             // 
             // MainForm
             // 
@@ -161,6 +173,7 @@ namespace CookieClickerBot
         private System.Windows.Forms.Label lbSearchInSource;
         private System.Windows.Forms.Button butStart;
         private System.Windows.Forms.CheckBox cbDrawRectangle;
+        private System.Windows.Forms.Button butTestScreenCapture;
     }
 }
 

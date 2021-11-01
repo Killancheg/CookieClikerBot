@@ -22,3 +22,5 @@ D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\C
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.csproj.CoreCompileInputs.cache
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.exe
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.pdb
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.csproj.AssemblyReference.cache
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.ScreenShotForm.resources
