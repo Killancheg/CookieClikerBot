@@ -36,8 +36,8 @@ namespace CookieClickerBot
                 await Task.Delay(5000);
                 GetCurrentImage();
                 ShowImageWithRectangles();
-
             }
+            workViewer.Close();
         }
 
         public void GetCurrentImage()
