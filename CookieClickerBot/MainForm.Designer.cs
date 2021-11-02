@@ -36,7 +36,6 @@ namespace CookieClickerBot
             this.lbSearchInSource = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.butTestFormStart = new System.Windows.Forms.Button();
-            this.butTestScreenCapture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,7 +53,6 @@ namespace CookieClickerBot
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.butTestScreenCapture);
             this.splitContainer1.Panel1.Controls.Add(this.cbDrawRectangle);
             this.splitContainer1.Panel1.Controls.Add(this.butStart);
             this.splitContainer1.Panel1.Controls.Add(this.cbProcessNamesList);
@@ -134,16 +132,6 @@ namespace CookieClickerBot
             this.butTestFormStart.UseVisualStyleBackColor = true;
             this.butTestFormStart.Click += new System.EventHandler(this.butTestFormStart_Click);
             // 
-            // butTestScreenCapture
-            // 
-            this.butTestScreenCapture.Location = new System.Drawing.Point(15, 167);
-            this.butTestScreenCapture.Name = "butTestScreenCapture";
-            this.butTestScreenCapture.Size = new System.Drawing.Size(214, 23);
-            this.butTestScreenCapture.TabIndex = 5;
-            this.butTestScreenCapture.Text = "TestScreenCapture";
-            this.butTestScreenCapture.UseVisualStyleBackColor = true;
-            this.butTestScreenCapture.Click += new System.EventHandler(this.butTestScreenCapture_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,7 +161,6 @@ namespace CookieClickerBot
         private System.Windows.Forms.Label lbSearchInSource;
         private System.Windows.Forms.Button butStart;
         private System.Windows.Forms.CheckBox cbDrawRectangle;
-        private System.Windows.Forms.Button butTestScreenCapture;
     }
 }
 

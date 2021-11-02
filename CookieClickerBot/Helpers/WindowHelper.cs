@@ -166,7 +166,7 @@ namespace CookieClickerBot.Helpers
             RECT rct = new RECT();
             GetWindowRect(hWnd, ref rct);
 
-            Rectangle rect = new Rectangle(rct.Left, rct.Top, (rct.Right - rct.Left), (rct.Bottom - rct.Top));
+            Rectangle rect = new Rectangle(rct.Left+5, rct.Top, (rct.Right - rct.Left)-8, (rct.Bottom - rct.Top)-8);
 
             return rect;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CookieClickerBot.Helpers;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
+
 
 namespace CookieClickerBot
 {
@@ -85,16 +90,32 @@ namespace CookieClickerBot
         {
             List<string> targets = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\", false);
 
-            double[] percents = new double[] { 0.60, 0.65, 0.70, 0.75, 0.80, 0.95, 0.90, 0.95, 1.10 };
+            List<double> percents = new List<double>();
+            double percentVariant = 0.50;
+            while (percentVariant < 1.01)
+            {
+                percents.Add(percentVariant);
+                percentVariant += 0.05;
+            }
+            
 
             foreach (var percent in percents)
             {
                 for (int i = 0; i < targets.Count; i++)
                 {
+                    string foldername = Path.GetFileName(targets[i]).Replace(".png","");
+                    foldername = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\" + foldername + @"\";
                     string filename = $"{i}_{percent}.png";
                     filename = filename.Replace(",", "").Replace("_0","_");
-                    string fullFilename = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\" + filename;
+                    string fullFilename = foldername + filename;
+                    if (!Directory.Exists(foldername))
+                    {
+                        Directory.CreateDirectory(foldername);
+                    }
+                    ImageHelper.PercentResizeImage(targets[i], percent);
                     ImageHelper.PercentResizeImage(targets[i], percent).Save(fullFilename);
+                    //Image<Bgr, byte> image = ImageHelper.PercentResizeImage(targets[i], percent);
+                    //ImageHelper.GetGrayScaledImage(image).Save(fullFilename);
                     //MessageBox.Show($"Сохранен файл {filename}");
                 }
             }

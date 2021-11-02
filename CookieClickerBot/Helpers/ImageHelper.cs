@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.IO;
 using CookieClickerBot;
@@ -40,9 +41,9 @@ namespace CookieClickerBot.Helpers
             return foundImages;
         }
 
-        public static Image<Bgr, Byte> PercentResizeImage(string filePath,double percent)
+        public static Image<Bgr, byte> PercentResizeImage(string filePath,double percent)
         {
-            Image<Bgr, Byte> captureImage = new Image<Bgr, byte>(filePath);
+            Image<Bgr, byte> captureImage = new Image<Bgr, byte>(filePath);
 
             int newWidth = (int)Math.Ceiling(captureImage.Width * percent);
             int newHeight = (int)Math.Ceiling(captureImage.Height * percent);
@@ -50,6 +51,31 @@ namespace CookieClickerBot.Helpers
             Image<Bgr, byte> resizedImage = captureImage.Resize(newWidth, newHeight, Inter.Linear);
 
             return resizedImage;
+        }
+
+        public static bool IsMatching(Image<Bgr, byte> source, Image<Bgr, byte> template, out Rectangle match)
+        {
+            match = new Rectangle();
+
+            using (Image<Gray, float> result = source.MatchTemplate(template, Emgu.CV.CvEnum.TemplateMatchingType.CcoeffNormed))
+            {
+                double[] minValues, maxValues;
+                Point[] minLocations, maxLocations;
+                result.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
+                if (maxValues[0] > 0.80)
+                {
+                    match = new Rectangle(maxLocations[0], template.Size);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static Image<Gray, byte> GetGrayScaledImage(Image<Bgr, byte> source)
+        {
+            Image<Gray, byte> grayImage = source.Convert<Gray, byte>();
+
+            return grayImage;
         }
 
     }

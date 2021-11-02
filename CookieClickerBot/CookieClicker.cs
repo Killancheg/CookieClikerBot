@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Drawing;
+using CookieClickerBot.Helpers;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 
 namespace CookieClickerBot
 {
@@ -33,8 +37,9 @@ namespace CookieClickerBot
         {
             while (!clicerCancelationToken.IsCancellationRequested)
             {
-                await Task.Delay(5000);
+                await Task.Delay(1000);
                 GetCurrentImage();
+                FindBigCookie();
                 ShowImageWithRectangles();
             }
             workViewer.Close();
@@ -53,9 +58,39 @@ namespace CookieClickerBot
             workViewer.SetPictureBoxImage(imageWithRectangles);
         }
 
+
+        //путь к папке пока захардкожен, надо будет как-то это поменять
         public void FindBigCookie()
         {
+            List<string> targetsPaths = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\perfectCookie", false);
 
+            List<Image<Bgr, byte>> targets = new List<Image<Bgr, byte>>();
+
+            foreach (string targetsPath in targetsPaths)
+            {
+                targets.Add(new Image<Bgr, byte>(targetsPath));
+            }
+
+            Image<Bgr, byte> source = сurrentImage.ToImage<Bgr, byte>();
+
+            Rectangle matchingRectangle = new Rectangle();
+
+            foreach (var target in targets)
+            {
+                bool isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
+                if (isFound)
+                {
+                    DrawRectangleOnImage(matchingRectangle);
+                    return;
+                }
+            }
+        }
+
+        public void DrawRectangleOnImage(Rectangle recToDraw)
+        {
+            Image<Bgr, byte> source = imageWithRectangles.ToImage<Bgr, byte>();
+            source.Draw(recToDraw, new Bgr(Color.Red), 3);
+            imageWithRectangles = source.ToBitmap();
         }
 
         public void ClickOnBigCookie()

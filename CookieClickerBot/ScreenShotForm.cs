@@ -22,8 +22,8 @@ namespace CookieClickerBot
         {
             Rectangle copiedWindowRectangle = WindowHelper.GetWindowBorderRectangle(hWnd);
 
-            Width = copiedWindowRectangle.Width+10;
-            Height = copiedWindowRectangle.Height+20;
+            Width = copiedWindowRectangle.Width+20;
+            Height = copiedWindowRectangle.Height+40;
 
             pbScreenshot.Width = copiedWindowRectangle.Width;
             pbScreenshot.Height = copiedWindowRectangle.Height;
