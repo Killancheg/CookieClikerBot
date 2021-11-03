@@ -78,8 +78,13 @@ namespace CookieClickerBot
 
             Image<Bgr, byte> source = сurrentImage.ToImage<Bgr, byte>();
 
+            
+
             while (!clicerCancelationToken.IsCancellationRequested)
             {
+                bool isMatchFound = false;
+                Rectangle rectangleToClick = new Rectangle();
+
                 Rectangle matchingRectangle = new Rectangle();
 
                 bool isFound = false;
@@ -89,13 +94,15 @@ namespace CookieClickerBot
                     isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
                     if (isFound)
                     {
+                        rectangleToClick = matchingRectangle;
+                        isMatchFound = isFound;
                         state.Break();
                     }
                 });
-                if (isFound)
+                if (isMatchFound)
                 {
-                    ClickOnCookie(matchingRectangle);
-                    DrawRectangleOnImage(matchingRectangle);
+                    ClickOnCookie(rectangleToClick);
+                    DrawRectangleOnImage(rectangleToClick);
                 }
             }
         }
