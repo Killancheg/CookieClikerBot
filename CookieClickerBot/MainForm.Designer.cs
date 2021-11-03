@@ -85,7 +85,7 @@ namespace CookieClickerBot
             this.butStart.Name = "butStart";
             this.butStart.Size = new System.Drawing.Size(107, 70);
             this.butStart.TabIndex = 3;
-            this.butStart.Text = "Начать";
+            this.butStart.Text = "Начать\r\n(Insert)\r\n";
             this.butStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.butStart.UseVisualStyleBackColor = true;
             this.butStart.Click += new System.EventHandler(this.butStart_Click);

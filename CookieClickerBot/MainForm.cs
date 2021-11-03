@@ -22,17 +22,22 @@ namespace CookieClickerBot
 
         private CancellationTokenSource ClickerTokenSource;
 
+        private KeyHandler ghk;
+
         public MainForm()
         {
             InitializeComponent();
             UpdateProcessList();
             ItializeActiveStatusChangeEvent();
+            ghk = new KeyHandler(Keys.Insert, this);
+            ghk.Register();
         }
 
         private void ItializeActiveStatusChangeEvent()
         {
             ChangeActiveStatus += ChageBotActiveStatus;
             ChangeActiveStatus += ChangeStartButtion;
+            ChangeActiveStatus += StartStopClicker;
         }
 
         private void butTestFormStart_Click(object sender, EventArgs e)
@@ -61,12 +66,12 @@ namespace CookieClickerBot
         {
             if (isRunning)
             {
-                butStart.Text = "Стоп";
+                butStart.Text = butStart.Text.Replace("Старт","Стоп");
                 butStart.Image = Properties.Resources.Small_stop_img;
             }
             else
             {
-                butStart.Text = "Старт";
+                butStart.Text = butStart.Text.Replace("Стоп", "Старт");
                 butStart.Image = Properties.Resources.Small_start_img;
             }
         }
@@ -83,7 +88,6 @@ namespace CookieClickerBot
             if (cbProcessNamesList.SelectedIndex != -1)
             {
                 ChangeActiveStatus();
-                StartStopClicker();
             }
         }
 
@@ -138,13 +142,20 @@ namespace CookieClickerBot
             }
         }
 
-        private void butTestScreenCapture_Click(object sender, EventArgs e)
+
+        private void HandleHotkey()
         {
-            var sc = new ScreenCapture();
-            ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
-            Bitmap bitmap = sc.GetScreenshot(selectedWindow.ID);
-            string filepath = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\";
-            sc.WriteBitmapToFile(filepath+"temp.jpg", bitmap);
+            if (cbProcessNamesList.SelectedIndex != -1)
+            {
+                ChangeActiveStatus();
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == Constants.WM_HOTKEY_MSG_ID)
+                HandleHotkey();
+            base.WndProc(ref m);
         }
     }
 }

@@ -10,6 +10,7 @@ using CookieClickerBot.Helpers;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
+using CookieClickerBot.Extentions;
 
 namespace CookieClickerBot
 {
@@ -37,7 +38,7 @@ namespace CookieClickerBot
         {
             while (!clicerCancelationToken.IsCancellationRequested)
             {
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 GetCurrentImage();
                 FindBigCookie();
                 ShowImageWithRectangles();
@@ -80,6 +81,7 @@ namespace CookieClickerBot
                 bool isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
                 if (isFound)
                 {
+                    ClickOnCookie(matchingRectangle);
                     DrawRectangleOnImage(matchingRectangle);
                     return;
                 }
@@ -93,9 +95,13 @@ namespace CookieClickerBot
             imageWithRectangles = source.ToBitmap();
         }
 
-        public void ClickOnBigCookie()
+        public void ClickOnCookie(Rectangle recToClick)
         {
+            Rectangle handlerRect = WindowHelper.GetWindowBorderRectangle(windowHandler);
 
+            recToClick.Offset(handlerRect.X, handlerRect.Y);
+
+            LesftMouseClickInRectangle(recToClick);
         }
     }
 }

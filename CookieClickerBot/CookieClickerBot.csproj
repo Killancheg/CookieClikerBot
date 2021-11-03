@@ -71,9 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clicker.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="CookieClicker.cs" />
+    <Compile Include="Extentions\RectangleExtentions.cs" />
     <Compile Include="Helpers\DrawHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="KeyHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
