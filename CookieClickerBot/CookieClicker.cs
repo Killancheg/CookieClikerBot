@@ -36,11 +36,14 @@ namespace CookieClickerBot
 
         public async Task Run()
         {
+            GetCurrentImage();
+            ShowImageWithRectangles();
+
+            Task bigCookieClickeTask = Task.Run(() => FindBigCookie());
             while (!clicerCancelationToken.IsCancellationRequested)
             {
                 await Task.Delay(100);
                 GetCurrentImage();
-                FindBigCookie();
                 ShowImageWithRectangles();
             }
             workViewer.Close();
@@ -63,6 +66,7 @@ namespace CookieClickerBot
         //путь к папке пока захардкожен, надо будет как-то это поменять
         public void FindBigCookie()
         {
+
             List<string> targetsPaths = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\perfectCookie", false);
 
             List<Image<Bgr, byte>> targets = new List<Image<Bgr, byte>>();
@@ -74,16 +78,24 @@ namespace CookieClickerBot
 
             Image<Bgr, byte> source = сurrentImage.ToImage<Bgr, byte>();
 
-            Rectangle matchingRectangle = new Rectangle();
-
-            foreach (var target in targets)
+            while (!clicerCancelationToken.IsCancellationRequested)
             {
-                bool isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
+                Rectangle matchingRectangle = new Rectangle();
+
+                bool isFound = false;
+
+                Parallel.ForEach(targets, (target, state) =>
+                {
+                    isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
+                    if (isFound)
+                    {
+                        state.Break();
+                    }
+                });
                 if (isFound)
                 {
                     ClickOnCookie(matchingRectangle);
                     DrawRectangleOnImage(matchingRectangle);
-                    return;
                 }
             }
         }
