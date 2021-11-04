@@ -41,7 +41,8 @@ namespace CookieClickerBot
             GetCurrentImage();
             ShowImageWithRectangles();
 
-            Task bigCookieClickeTask = Task.Run(() => FindBigCookie());
+            Task bigCookieClickeTask = Task.Run(() => FindCookie(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\perfectCookie"));
+            Task goldCookieClickeTask = Task.Run(() => FindCookie(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\goldCookie"));
             while (!clicerCancelationToken.IsCancellationRequested)
             {
                 await Task.Delay(300);
@@ -66,10 +67,9 @@ namespace CookieClickerBot
 
 
         //путь к папке пока захардкожен, надо будет как-то это поменять
-        public void FindBigCookie()
+        public void FindCookie(string targetsFolder)
         {
-
-            List<string> targetsPaths = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\perfectCookie", false);
+            List<string> targetsPaths = ImageHelper.GetImagesFromFolderList(targetsFolder, false);
 
             List<Image<Bgr, byte>> targets = new List<Image<Bgr, byte>>();
 
