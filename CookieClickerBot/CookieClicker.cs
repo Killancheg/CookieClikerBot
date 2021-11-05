@@ -28,11 +28,21 @@ namespace CookieClickerBot
 
         private object imageWithRectanglesLocker = new object();
 
+        private string bigCooliePath = "";
+        private string goldCooliePath = "";
+
         public CookieClicker(ScreenShotForm workViewer, IntPtr hWnd, CancellationToken token)
         {
             this.workViewer = workViewer;
             windowHandler = hWnd;
             clicerCancelationToken = token;
+            GetTargetsPaths();
+        }
+
+        private void GetTargetsPaths()
+        {
+            bigCooliePath = FileHelper.GetTargetImagesFolderPath() + @"perfectCookie";
+            goldCooliePath = FileHelper.GetTargetImagesFolderPath() + @"goldCookie";
         }
 
 
@@ -41,8 +51,8 @@ namespace CookieClickerBot
             GetCurrentImage();
             ShowImageWithRectangles();
 
-            Task bigCookieClickeTask = Task.Run(() => FindCookie(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\perfectCookie"));
-            Task goldCookieClickeTask = Task.Run(() => FindCookie(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\goldCookie"));
+            Task bigCookieClickeTask = Task.Run(() => FindCookie(bigCooliePath));
+            Task goldCookieClickeTask = Task.Run(() => FindCookie(goldCooliePath));
             while (!clicerCancelationToken.IsCancellationRequested)
             {
                 await Task.Delay(300);
@@ -52,22 +62,20 @@ namespace CookieClickerBot
             workViewer.Close();
         }
 
-        public void GetCurrentImage()
+        private void GetCurrentImage()
         {
             var sc = new ScreenCapture();
             сurrentImage = sc.GetScreenshot(windowHandler);
         }
 
-        public void ShowImageWithRectangles()
+        private void ShowImageWithRectangles()
         {
             Bitmap imageToShow = imageWithRectangles;
             workViewer.CopyWindowSize(windowHandler);
             workViewer.SetPictureBoxImage(imageToShow);
         }
 
-
-        //путь к папке пока захардкожен, надо будет как-то это поменять
-        public void FindCookie(string targetsFolder)
+        private void FindCookie(string targetsFolder)
         {
             List<string> targetsPaths = ImageHelper.GetImagesFromFolderList(targetsFolder, false);
 
@@ -107,7 +115,7 @@ namespace CookieClickerBot
             }
         }
 
-        public void DrawRectangleOnImage(Rectangle recToDraw)
+        private void DrawRectangleOnImage(Rectangle recToDraw)
         {
             lock (imageWithRectanglesLocker)
             {
@@ -118,7 +126,7 @@ namespace CookieClickerBot
             }
         }
 
-        public void ClickOnCookie(Rectangle recToClick)
+        private void ClickOnCookie(Rectangle recToClick)
         {
             Rectangle handlerRect = WindowHelper.GetWindowBorderRectangle(windowHandler);
 

@@ -29,6 +29,7 @@ namespace CookieClickerBot
             InitializeComponent();
             UpdateProcessList();
             ItializeActiveStatusChangeEvent();
+            FileHelper.UnzipResouceImages();
             ghk = new KeyHandler(Keys.Insert, this);
             ghk.Register();
         }
