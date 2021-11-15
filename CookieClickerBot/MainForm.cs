@@ -39,6 +39,7 @@ namespace CookieClickerBot
             ChangeActiveStatus += ChageBotActiveStatus;
             ChangeActiveStatus += ChangeStartButtion;
             ChangeActiveStatus += StartStopClicker;
+            ChangeActiveStatus += ChageComboboxEnambledStatus;
         }
 
         private void butTestFormStart_Click(object sender, EventArgs e)
@@ -61,6 +62,18 @@ namespace CookieClickerBot
         private void cbProcessNamesList_DropDown(object sender, EventArgs e)
         {
             UpdateProcessList();
+        }
+
+        private void ChageComboboxEnambledStatus()
+        {
+            if (isRunning)
+            {
+                cbProcessNamesList.Enabled = false;
+            }
+            else
+            {
+                cbProcessNamesList.Enabled = true;
+            }
         }
 
         private void ChangeStartButtion()
@@ -158,5 +171,6 @@ namespace CookieClickerBot
                 HandleHotkey();
             base.WndProc(ref m);
         }
+
     }
 }

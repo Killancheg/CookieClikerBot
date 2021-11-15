@@ -55,8 +55,8 @@ namespace CookieClickerBot
             Task goldCookieClickeTask = Task.Run(() => FindCookie(goldCooliePath));
             while (!clicerCancelationToken.IsCancellationRequested)
             {
-                await Task.Delay(300);
                 GetCurrentImage();
+                await Task.Delay(300);
                 ShowImageWithRectangles();
             }
             workViewer.Close();
@@ -66,11 +66,12 @@ namespace CookieClickerBot
         {
             var sc = new ScreenCapture();
             сurrentImage = sc.GetScreenshot(windowHandler);
+            imageWithRectangles = сurrentImage.Clone() as Bitmap;
         }
 
         private void ShowImageWithRectangles()
         {
-            Bitmap imageToShow = imageWithRectangles;
+            Bitmap imageToShow = imageWithRectangles.Clone() as Bitmap;
             workViewer.CopyWindowSize(windowHandler);
             workViewer.SetPictureBoxImage(imageToShow);
         }
@@ -119,7 +120,7 @@ namespace CookieClickerBot
         {
             lock (imageWithRectanglesLocker)
             {
-                imageWithRectangles = сurrentImage;
+                
                 Image<Bgr, byte> source = imageWithRectangles.ToImage<Bgr, byte>();
                 source.Draw(recToDraw, new Bgr(Color.Red), 3);
                 imageWithRectangles = source.ToBitmap();
