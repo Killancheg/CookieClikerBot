@@ -7,12 +7,9 @@ using System.Windows.Forms;
 using CookieClickerBot.Helpers;
 using CookieClickerBot.ProcessTypes;
 
-namespace CookieClickerBot
+namespace CookieClickerBot.PannelFoms
 {
-    public delegate void StartStopBot();
-
-
-    public partial class MainForm : Form
+    public partial class BotStartForm : Form
     {
         public event StartStopBot ChangeActiveStatus;
 
@@ -24,12 +21,10 @@ namespace CookieClickerBot
 
         private KeyHandler ghk;
 
-        public MainForm()
+        public BotStartForm()
         {
             InitializeComponent();
-            UpdateProcessList();
             ItializeActiveStatusChangeEvent();
-            FileHelper.UnzipResouceImages();
             ghk = new KeyHandler(Keys.Insert, this);
             ghk.Register();
         }
@@ -42,37 +37,26 @@ namespace CookieClickerBot
             ChangeActiveStatus += ChageComboboxEnambledStatus;
         }
 
-        private void butTestFormStart_Click(object sender, EventArgs e)
-        {
-            TestForm testForm = new TestForm();
-            testForm.Show();
-        }
-
         private void UpdateProcessList()
         {
             List<ComboBoxWindow> comboBoxOpenWindows = WindowHelper.GetComboBoxOpenedWindowsList();
-            cbProcessNamesList.Items.Clear();
+            cbWindowList.Items.Clear();
 
             foreach (var comboBoxWindow in comboBoxOpenWindows)
             {
-                cbProcessNamesList.Items.Add(comboBoxWindow);
+                cbWindowList.Items.Add(comboBoxWindow);
             }
-        }
-
-        private void cbProcessNamesList_DropDown(object sender, EventArgs e)
-        {
-            UpdateProcessList();
         }
 
         private void ChageComboboxEnambledStatus()
         {
             if (isRunning)
             {
-                cbProcessNamesList.Enabled = false;
+                cbWindowList.Enabled = false;
             }
             else
             {
-                cbProcessNamesList.Enabled = true;
+                cbWindowList.Enabled = true;
             }
         }
 
@@ -80,29 +64,19 @@ namespace CookieClickerBot
         {
             if (isRunning)
             {
-                butStart.Text = butStart.Text.Replace("Старт","Стоп");
-                butStart.Image = Properties.Resources.Small_stop_img;
+                btnStart.Text = btnStart.Text.Replace("Запуск", "Стоп");
+                btnStart.Image = Properties.Resources.Small_stop_img;
             }
             else
             {
-                butStart.Text = butStart.Text.Replace("Стоп", "Старт");
-                butStart.Image = Properties.Resources.Small_start_img;
+                btnStart.Text = btnStart.Text.Replace("Стоп", "Запуск");
+                btnStart.Image = Properties.Resources.Small_start_img;
             }
         }
 
         private void ChageBotActiveStatus()
         {
             isRunning = !isRunning;
-        }
-
-        private void butStart_Click(object sender, EventArgs e)
-        {
-            // не учитывает случая, когда кликкер был запущен в одном окне, а затем было выбрано другое
-            // Возможно стоит написать триггеры для комбобокса
-            if (cbProcessNamesList.SelectedIndex != -1)
-            {
-                ChangeActiveStatus();
-            }
         }
 
         private async void StartStopClicker()
@@ -115,7 +89,7 @@ namespace CookieClickerBot
 
                 clickerViewer.Show();
 
-                ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
+                ComboBoxWindow selectedWindow = cbWindowList.SelectedItem as ComboBoxWindow;
 
                 CookieClicker cookieClicker = new CookieClicker(clickerViewer, selectedWindow.ID, ClickerTokenSource.Token);
 
@@ -132,34 +106,14 @@ namespace CookieClickerBot
         private ScreenShotForm CreateSceenShotForm()
         {
             ScreenShotForm screenshotViewer = new ScreenShotForm();
-            ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
+            ComboBoxWindow selectedWindow = cbWindowList.SelectedItem as ComboBoxWindow;
             screenshotViewer.CopyWindowSize(selectedWindow.ID);
             return screenshotViewer;
         }
 
-        private void cbDrawRectangle_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbProcessNamesList.SelectedIndex != -1)
-            {
-                if (cbDrawRectangle.Checked)
-                {
-                    ComboBoxWindow selectedWindow = cbProcessNamesList.SelectedItem as ComboBoxWindow;
-
-                    DrawingTokenSource = new CancellationTokenSource();
-
-                    Task drowRectangleTask = Task.Run(() => DrawHelper.HighlightSelectedWindow(selectedWindow.ID, DrawingTokenSource.Token));
-                }
-                else
-                {
-                    DrawingTokenSource.Cancel();
-                }
-            }
-        }
-
-
         private void HandleHotkey()
         {
-            if (cbProcessNamesList.SelectedIndex != -1)
+            if (cbWindowList.SelectedIndex != -1)
             {
                 ChangeActiveStatus();
             }
@@ -172,5 +126,36 @@ namespace CookieClickerBot
             base.WndProc(ref m);
         }
 
+        private void cbWindowList_DropDown(object sender, EventArgs e)
+        {
+            UpdateProcessList();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            if (cbWindowList.SelectedIndex != -1)
+            {
+                ChangeActiveStatus();
+            }
+        }
+
+        private void chbDrawRectangle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbWindowList.SelectedIndex != -1)
+            {
+                if (chbDrawRectangle.Checked)
+                {
+                    ComboBoxWindow selectedWindow = cbWindowList.SelectedItem as ComboBoxWindow;
+
+                    DrawingTokenSource = new CancellationTokenSource();
+
+                    Task drowRectangleTask = Task.Run(() => DrawHelper.HighlightSelectedWindow(selectedWindow.ID, DrawingTokenSource.Token));
+                }
+                else
+                {
+                    DrawingTokenSource.Cancel();
+                }
+            }
+        }
     }
 }

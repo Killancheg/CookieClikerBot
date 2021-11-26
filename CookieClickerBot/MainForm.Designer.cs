@@ -83,7 +83,7 @@ namespace CookieClickerBot
             this.butStart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.butStart.Location = new System.Drawing.Point(15, 64);
             this.butStart.Name = "butStart";
-            this.butStart.Size = new System.Drawing.Size(107, 70);
+            this.butStart.Size = new System.Drawing.Size(100, 70);
             this.butStart.TabIndex = 3;
             this.butStart.Text = "Начать\r\n(Insert)\r\n";
             this.butStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
