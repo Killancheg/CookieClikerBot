@@ -29,13 +29,25 @@ namespace CookieClickerBot.PannelFoms
         /// </summary>
         private void InitializeComponent()
         {
+            this.wbReadMe = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
+            // 
+            // wbReadMe
+            // 
+            this.wbReadMe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbReadMe.Location = new System.Drawing.Point(0, 0);
+            this.wbReadMe.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbReadMe.Name = "wbReadMe";
+            this.wbReadMe.Size = new System.Drawing.Size(800, 450);
+            this.wbReadMe.TabIndex = 0;
+            this.wbReadMe.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbReadMe_Navigating);
             // 
             // ReadMeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.wbReadMe);
             this.Name = "ReadMeForm";
             this.Text = "О ПРОГРАММЕ";
             this.ResumeLayout(false);
@@ -43,5 +55,7 @@ namespace CookieClickerBot.PannelFoms
         }
 
         #endregion
+
+        private System.Windows.Forms.WebBrowser wbReadMe;
     }
 }

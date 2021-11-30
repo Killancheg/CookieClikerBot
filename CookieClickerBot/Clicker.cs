@@ -9,7 +9,7 @@ using CookieClickerBot.Extentions;
 
 namespace CookieClickerBot
 {
-    class Clicker
+    public class Clicker
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         static extern bool SetCursorPos(int x, int y);

@@ -14,13 +14,13 @@ using CookieClickerBot.Extentions;
 
 namespace CookieClickerBot
 {
-    class CookieClicker : Clicker
+    public class CookieClicker : Clicker
     {
         private ScreenShotForm workViewer;
 
         private IntPtr windowHandler;
 
-        private CancellationToken clicerCancelationToken;
+        private CancellationToken clickerCancelationToken;
 
         private Bitmap сurrentImage;
 
@@ -35,7 +35,7 @@ namespace CookieClickerBot
         {
             this.workViewer = workViewer;
             windowHandler = hWnd;
-            clicerCancelationToken = token;
+            clickerCancelationToken = token;
             GetTargetsPaths();
         }
 
@@ -53,7 +53,7 @@ namespace CookieClickerBot
 
             Task bigCookieClickeTask = Task.Run(() => FindCookie(bigCooliePath));
             Task goldCookieClickeTask = Task.Run(() => FindCookie(goldCooliePath));
-            while (!clicerCancelationToken.IsCancellationRequested)
+            while (!clickerCancelationToken.IsCancellationRequested)
             {
                 GetCurrentImage();
                 await Task.Delay(300);
@@ -87,10 +87,11 @@ namespace CookieClickerBot
                 targets.Add(new Image<Bgr, byte>(targetsPath));
             }
 
-            while (!clicerCancelationToken.IsCancellationRequested)
+            while (!clickerCancelationToken.IsCancellationRequested)
             {
                 Task.Delay(300);
-                Image<Bgr, byte> source = сurrentImage.ToImage<Bgr, byte>();
+                Bitmap currentImage = this.сurrentImage.Clone() as Bitmap;
+                Image<Bgr, byte> source = currentImage.ToImage<Bgr, byte>();
                 bool isMatchFound = false;
                 Rectangle rectangleToClick = new Rectangle();
 
@@ -118,13 +119,10 @@ namespace CookieClickerBot
 
         private void DrawRectangleOnImage(Rectangle recToDraw)
         {
-            lock (imageWithRectanglesLocker)
-            {
-                
-                Image<Bgr, byte> source = imageWithRectangles.ToImage<Bgr, byte>();
-                source.Draw(recToDraw, new Bgr(Color.Red), 3);
-                imageWithRectangles = source.ToBitmap();
-            }
+
+            Image<Bgr, byte> source = imageWithRectangles.ToImage<Bgr, byte>();
+            source.Draw(recToDraw, new Bgr(Color.Red), 3);
+            imageWithRectangles = source.ToBitmap();
         }
 
         private void ClickOnCookie(Rectangle recToClick)

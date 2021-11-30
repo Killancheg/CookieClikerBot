@@ -30,3 +30,8 @@ D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\C
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.PannelFoms.ReadMeForm.resources
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.PannelFoms.SettingsForm.resources
 D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\obj\x64\Debug\CookieClickerBot.PannelFoms.TestEnvForm.resources
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\x64\Debug\Markdig.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\x64\Debug\System.Buffers.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\x64\Debug\System.Memory.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\x64\Debug\System.Numerics.Vectors.dll
+D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll

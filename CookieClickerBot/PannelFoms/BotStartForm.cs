@@ -157,5 +157,10 @@ namespace CookieClickerBot.PannelFoms
                 }
             }
         }
+
+        private void cbWindowList_Enter(object sender, EventArgs e)
+        {
+            UpdateProcessList();
+        }
     }
 }

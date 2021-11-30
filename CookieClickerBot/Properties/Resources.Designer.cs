@@ -221,6 +221,25 @@ namespace CookieClickerBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ####Назначение
+        ///
+        ///Данная программа предназначена для увеличения idle дохода при игре в CockieClicker. Она забирает управления у игрока и самостоятельно кликает по главной и золотым печенькам.
+        ///
+        ///####Принцип работы
+        ///
+        ///Программа делает снимки экрана выбранного окна и на их основе пытется понять местонахождение нужных ей элеметов. Во время работы программы практически невозможно делать что-то ещё, так как она забирает управление курсором.
+        ///
+        ///####Планы на будущее
+        ///
+        ///- Добавить функцию автоматической покупки апг [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ReadMe {
+            get {
+                return ResourceManager.GetString("ReadMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap settings_16 {

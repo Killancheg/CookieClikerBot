@@ -34,7 +34,7 @@ namespace CookieClickerBot
 
         private void RemoveStandartBorder()
         {
-            this.Text = string.Empty;
+            ///this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }

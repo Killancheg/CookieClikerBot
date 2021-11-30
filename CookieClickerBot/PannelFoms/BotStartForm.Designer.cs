@@ -46,6 +46,7 @@ namespace CookieClickerBot.PannelFoms
             this.cbWindowList.Size = new System.Drawing.Size(528, 31);
             this.cbWindowList.TabIndex = 0;
             this.cbWindowList.DropDown += new System.EventHandler(this.cbWindowList_DropDown);
+            this.cbWindowList.Enter += new System.EventHandler(this.cbWindowList_Enter);
             // 
             // lbWindowList
             // 

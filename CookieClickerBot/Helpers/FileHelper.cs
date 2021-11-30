@@ -30,5 +30,19 @@ namespace CookieClickerBot.Helpers
 
             return path;
         }
+
+        public async static Task<string> GetTextFromFile(string path)
+        {
+            string text = "";
+            if (File.Exists(path))
+            {
+                using (StreamReader file = new StreamReader(path, Encoding.UTF8))
+                {
+                    text = await file.ReadToEndAsync();
+                }
+            }
+
+            return text;
+        }
     }
 }

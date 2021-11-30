@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[4.5.4.4788, )"
             },
+            "Markdig": {
+              "target": "Package",
+              "version": "[0.26.0, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[5.0.2, )"
