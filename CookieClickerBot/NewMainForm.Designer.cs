@@ -76,7 +76,7 @@ namespace CookieClickerBot
             this.btnTest.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnTest.Size = new System.Drawing.Size(220, 60);
             this.btnTest.TabIndex = 3;
-            this.btnTest.Text = "  Тестовая среда";
+            this.btnTest.Text = "  Test Environment";
             this.btnTest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTest.UseVisualStyleBackColor = false;
@@ -97,7 +97,7 @@ namespace CookieClickerBot
             this.btnSettings.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(220, 60);
             this.btnSettings.TabIndex = 2;
-            this.btnSettings.Text = "  Настройки";
+            this.btnSettings.Text = "  Settings";
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = false;
@@ -118,7 +118,7 @@ namespace CookieClickerBot
             this.btnClicker.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btnClicker.Size = new System.Drawing.Size(220, 60);
             this.btnClicker.TabIndex = 1;
-            this.btnClicker.Text = "  Автокликкер";
+            this.btnClicker.Text = "  Autoclicker";
             this.btnClicker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClicker.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClicker.UseVisualStyleBackColor = false;
@@ -205,9 +205,9 @@ namespace CookieClickerBot
             this.lbTitle.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbTitle.Location = new System.Drawing.Point(185, 28);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(111, 32);
+            this.lbTitle.Size = new System.Drawing.Size(122, 32);
             this.lbTitle.TabIndex = 0;
-            this.lbTitle.Text = "ОБЗОР";
+            this.lbTitle.Text = "REVIEW";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // desctopPanel

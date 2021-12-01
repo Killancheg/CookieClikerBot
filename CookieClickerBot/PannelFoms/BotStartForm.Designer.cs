@@ -54,9 +54,9 @@ namespace CookieClickerBot.PannelFoms
             this.lbWindowList.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbWindowList.Location = new System.Drawing.Point(13, 13);
             this.lbWindowList.Name = "lbWindowList";
-            this.lbWindowList.Size = new System.Drawing.Size(215, 23);
+            this.lbWindowList.Size = new System.Drawing.Size(138, 23);
             this.lbWindowList.TabIndex = 1;
-            this.lbWindowList.Text = "Выберите окно для работы:";
+            this.lbWindowList.Text = "Chose application:";
             // 
             // btnStart
             // 
@@ -65,9 +65,9 @@ namespace CookieClickerBot.PannelFoms
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStart.Location = new System.Drawing.Point(17, 85);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(162, 78);
+            this.btnStart.Size = new System.Drawing.Size(162, 81);
             this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "Запуск\r\n(Insert)";
+            this.btnStart.Text = "Start\n(Insert)";
             this.btnStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -79,9 +79,9 @@ namespace CookieClickerBot.PannelFoms
             this.chbDrawRectangle.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.chbDrawRectangle.Location = new System.Drawing.Point(12, 328);
             this.chbDrawRectangle.Name = "chbDrawRectangle";
-            this.chbDrawRectangle.Size = new System.Drawing.Size(245, 24);
+            this.chbDrawRectangle.Size = new System.Drawing.Size(203, 24);
             this.chbDrawRectangle.TabIndex = 3;
-            this.chbDrawRectangle.Text = "Выделить выбранное приложение";
+            this.chbDrawRectangle.Text = "Highlight selected application";
             this.chbDrawRectangle.UseVisualStyleBackColor = true;
             this.chbDrawRectangle.CheckedChanged += new System.EventHandler(this.chbDrawRectangle_CheckedChanged);
             // 
@@ -95,7 +95,7 @@ namespace CookieClickerBot.PannelFoms
             this.Controls.Add(this.lbWindowList);
             this.Controls.Add(this.cbWindowList);
             this.Name = "BotStartForm";
-            this.Text = "АВТОКЛИККЕР";
+            this.Text = "AUTOCLICKER";
             this.ResumeLayout(false);
             this.PerformLayout();
 

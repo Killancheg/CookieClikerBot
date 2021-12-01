@@ -41,7 +41,7 @@ namespace CookieClickerBot.PannelFoms
             this.btnShowTetsForm.Name = "btnShowTetsForm";
             this.btnShowTetsForm.Size = new System.Drawing.Size(800, 450);
             this.btnShowTetsForm.TabIndex = 0;
-            this.btnShowTetsForm.Text = "Запустить форму для тестов";
+            this.btnShowTetsForm.Text = "Show Test Environment";
             this.btnShowTetsForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnShowTetsForm.UseVisualStyleBackColor = true;
             this.btnShowTetsForm.Click += new System.EventHandler(this.btnShowTetsForm_Click);
@@ -53,7 +53,7 @@ namespace CookieClickerBot.PannelFoms
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnShowTetsForm);
             this.Name = "TestEnvForm";
-            this.Text = "ТЕСТОВАЯ СРЕДА";
+            this.Text = "TEST ENVIRONMENT";
             this.ResumeLayout(false);
 
         }

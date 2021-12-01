@@ -1,18 +1,19 @@
-#### Назначение
+#### Purpose
 
-Данная программа предназначена для увеличения idle дохода при игре в CockieClicker. Она забирает управления у игрока и самостоятельно кликает по главной и золотым печенькам.
+This program is designed to increase idle income in Cookie Clicker. It takes control from the player and clicks on the main and golden cookies.
 
-#### Принцип работы
+#### How it works
 
-Программа делает снимки экрана выбранного окна и на их основе пытется понять местонахождение нужных ей элеметов. Во время работы программы практически невозможно делать что-то ещё, так как она забирает управление курсором.
+The program takes screenshots of the selected window and based on them tries to find location of necessary items. While the program is running, it is almost impossible to do anything else, since it takes control of the cursor.
 
-#### Планы на будущее
+#### Future plans
 
-- Добавить функцию автоматической покупки апгрейдов
-- Добавить функцию автоматической покупки зданий
-- Добавить функцию автоматического применения заклинания "Рука судьбы"
+- Add automatic upgrade purchase feature
+- Add automatic building purchase function
+- Add automatic use of the "Hand of Fate" spell 
 
-#### Лицензия и распространение
+#### License and distribution
 
-Эта программа с открытым кодом. Она полностью бесплатна. Её может использовать кто угодно. Вы можете предоставлять любые ссылки на её скачивание, при указании авторства.
-**[Актуальную весию всегда можно забрать тут](https://github.com/Killancheg/CookieClikerBot)**
+This is open source ptoject. It is completely free. Anyone can use it. You can provide any download links, as long as author is mentioned.
+
+**[The current version can always be picked up here](https://github.com/Killancheg/CookieClikerBot)**

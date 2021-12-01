@@ -49,7 +49,7 @@ namespace CookieClickerBot.PannelFoms
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.wbReadMe);
             this.Name = "ReadMeForm";
-            this.Text = "О ПРОГРАММЕ";
+            this.Text = "README";
             this.ResumeLayout(false);
 
         }

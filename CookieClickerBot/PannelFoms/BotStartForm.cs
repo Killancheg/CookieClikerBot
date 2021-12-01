@@ -64,12 +64,12 @@ namespace CookieClickerBot.PannelFoms
         {
             if (isRunning)
             {
-                btnStart.Text = btnStart.Text.Replace("Запуск", "Стоп");
+                btnStart.Text = btnStart.Text.Replace("Start", "Stop");
                 btnStart.Image = Properties.Resources.Small_stop_img;
             }
             else
             {
-                btnStart.Text = btnStart.Text.Replace("Стоп", "Запуск");
+                btnStart.Text = btnStart.Text.Replace("Stop", "Start");
                 btnStart.Image = Properties.Resources.Small_start_img;
             }
         }
