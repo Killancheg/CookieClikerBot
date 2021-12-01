@@ -51,11 +51,13 @@ namespace CookieClickerBot
             GetCurrentImage();
             ShowImageWithRectangles();
 
-            Task bigCookieClickeTask = Task.Run(() => FindCookie(bigCooliePath));
-            Task goldCookieClickeTask = Task.Run(() => FindCookie(goldCooliePath));
+            //Task bigCookieClickeTask = Task.Run(() => FindCookie(bigCooliePath));
+            //Task goldCookieClickeTask = Task.Run(() => FindCookie(goldCooliePath));
             while (!clickerCancelationToken.IsCancellationRequested)
             {
                 GetCurrentImage();
+                FindCookie(bigCooliePath);
+                FindCookie(goldCooliePath);
                 await Task.Delay(300);
                 ShowImageWithRectangles();
             }
@@ -87,34 +89,32 @@ namespace CookieClickerBot
                 targets.Add(new Image<Bgr, byte>(targetsPath));
             }
 
-            while (!clickerCancelationToken.IsCancellationRequested)
+
+            Bitmap currentImage = this.сurrentImage.Clone() as Bitmap;
+            Image<Bgr, byte> source = currentImage.ToImage<Bgr, byte>();
+            bool isMatchFound = false;
+            Rectangle rectangleToClick = new Rectangle();
+
+            Rectangle matchingRectangle = new Rectangle();
+
+            bool isFound = false;
+
+            Parallel.ForEach(targets, (target, state) =>
             {
-                Task.Delay(300);
-                Bitmap currentImage = this.сurrentImage.Clone() as Bitmap;
-                Image<Bgr, byte> source = currentImage.ToImage<Bgr, byte>();
-                bool isMatchFound = false;
-                Rectangle rectangleToClick = new Rectangle();
-
-                Rectangle matchingRectangle = new Rectangle();
-
-                bool isFound = false;
-
-                Parallel.ForEach(targets, (target, state) =>
+                isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
+                if (isFound)
                 {
-                    isFound = ImageHelper.IsMatching(source, target, out matchingRectangle);
-                    if (isFound)
-                    {
-                        rectangleToClick = matchingRectangle;
-                        isMatchFound = isFound;
-                        state.Break();
-                    }
-                });
-                if (isMatchFound)
-                {
-                    ClickOnCookie(rectangleToClick);
-                    DrawRectangleOnImage(rectangleToClick);
+                    rectangleToClick = matchingRectangle;
+                    isMatchFound = isFound;
+                    state.Break();
                 }
+            });
+            if (isMatchFound)
+            {
+                ClickOnCookie(rectangleToClick);
+                DrawRectangleOnImage(rectangleToClick);
             }
+
         }
 
         private void DrawRectangleOnImage(Rectangle recToDraw)
