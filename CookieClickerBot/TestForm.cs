@@ -88,14 +88,21 @@ namespace CookieClickerBot
 
         private void butRescale_Click(object sender, EventArgs e)
         {
-            List<string> targets = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\", false);
+            List<string> targets = ImageHelper.GetImagesFromFolderList(@"D:\Code\Repos\CookieClickerBot\CookieClickerTargets\", false);
 
             List<double> percents = new List<double>();
             double percentVariant = 0.50;
-            while (percentVariant < 1.01)
+            while (percentVariant < 1.21)
             {
                 percents.Add(percentVariant);
-                percentVariant += 0.05;
+                if (percentVariant < 1)
+                {
+                    percentVariant += 0.05;
+                }
+                else
+                {
+                    percentVariant += 0.02;
+                }
             }
             
 
@@ -104,7 +111,7 @@ namespace CookieClickerBot
                 for (int i = 0; i < targets.Count; i++)
                 {
                     string foldername = Path.GetFileName(targets[i]).Replace(".png","");
-                    foldername = @"D:\Code\Repos\CookieClickerBot\CookieClickerBot\CookieClickerBot\CookieClickerTargets\TargetsRescaled\" + foldername + @"\";
+                    foldername = @"D:\Code\Repos\CookieClickerBot\CookieClickerTargets\TargetsRescaled\" + foldername + @"\";
                     string filename = $"{i}_{percent}.png";
                     filename = filename.Replace(",", "").Replace("_0","_");
                     string fullFilename = foldername + filename;

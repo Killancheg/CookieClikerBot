@@ -16,4 +16,4 @@ The program takes screenshots of the selected window and based on them tries to 
 
 This is open source ptoject. It is completely free. Anyone can use it. You can provide any download links, as long as author is mentioned.
 
-**[The current version can always be picked up here](https://github.com/Killancheg/CookieClikerBot)**
+**[The current version can always be downloaded from here](https://github.com/Killancheg/CookieClikerBot)**
