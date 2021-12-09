@@ -12,6 +12,7 @@ using Emgu.CV.CvEnum;
 
 namespace CookieClickerBot.Helpers
 {
+    ///<summary>Статический класс, содержащий в себе методы для работы с изображениями.</summary>
     static class ImageHelper
     {
         private static List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
@@ -62,7 +63,7 @@ namespace CookieClickerBot.Helpers
                 double[] minValues, maxValues;
                 Point[] minLocations, maxLocations;
                 result.MinMax(out minValues, out maxValues, out minLocations, out maxLocations);
-                if (maxValues[0] > 0.80)
+                if (maxValues[0] > 0.70)
                 {
                     match = new Rectangle(maxLocations[0], template.Size);
                     return true;

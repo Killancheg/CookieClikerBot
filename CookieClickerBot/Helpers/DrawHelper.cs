@@ -6,6 +6,7 @@ using System.Threading;
 
 namespace CookieClickerBot.Helpers
 {
+    ///<summary>Статический класс, содержащий в себе методы для работы графикой.</summary>
     static class DrawHelper
     {
         [DllImport("user32.dll", EntryPoint = "GetDC")]

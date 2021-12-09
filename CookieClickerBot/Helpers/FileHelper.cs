@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CookieClickerBot.Helpers
-{
+{   ///<summary>Статический класс, содержащий в себе методы для работы с файлами.</summary>
     static class FileHelper
     {
         public static void UnzipResouceImages()

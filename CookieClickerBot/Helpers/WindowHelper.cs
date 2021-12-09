@@ -9,6 +9,7 @@ using System.Drawing;
 
 namespace CookieClickerBot.Helpers
 {
+    ///<summary>Статический класс, содержащий в себе методы для получения информации о всех запущенных на данный момент приложениях, имеющих окно-хендлер.</summary>
     static class WindowHelper
     {
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]

@@ -92,7 +92,7 @@ namespace CookieClickerBot
 
             Bitmap currentImage = this.сurrentImage.Clone() as Bitmap;
             Image<Bgr, byte> source = currentImage.ToImage<Bgr, byte>();
-            bool isMatchFound = false;
+            bool matchIsFound = false;
             Rectangle rectangleToClick = new Rectangle();
 
             Rectangle matchingRectangle = new Rectangle();
@@ -105,11 +105,11 @@ namespace CookieClickerBot
                 if (isFound)
                 {
                     rectangleToClick = matchingRectangle;
-                    isMatchFound = isFound;
+                    matchIsFound = isFound;
                     state.Break();
                 }
             });
-            if (isMatchFound)
+            if (matchIsFound)
             {
                 ClickOnCookie(rectangleToClick);
                 DrawRectangleOnImage(rectangleToClick);
